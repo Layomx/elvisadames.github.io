@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elvis Adames - Estudiante en Ingeniería en Sistemas y Computación</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES CSS ===== */
+        :root {
+            --color-primary: #1e3a8a;
+            --color-primary-light: #3b82f6;
+            --color-secondary: #64748b;
+            --color-dark: #0f172a;
+            --color-light: #f8fafc;
+            --color-white: #ffffff;
+            --color-gray: #e2e8f0;
+            --color-gray-dark: #475569;
+            --color-accent: #06b6d4;
+            
+            --font-family: 'Inter', sans-serif;
+            --font-size-base: 16px;
+            --font-size-small: 14px;
+            --font-size-large: 18px;
+            --font-size-xl: 24px;
+            --font-size-xxl: 32px;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+            
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== RESET Y BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: var(--color-light);
+        }
+
+        /* ===== COMPONENTES UTILES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section {
+            padding: var(--spacing-xxl) 0;
+        }
+
+        .section-title {
+            font-size: var(--font-size-xxl);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: var(--color-white);
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .header .subtitle {
+            font-size: var(--font-size-xl);
+            font-weight: 300;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.9;
+        }
+
+        .header .description {
+            font-size: var(--font-size-large);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        .nav {
+            background: var(--color-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-secondary);
+            font-weight: 500;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+            background: var(--color-gray);
+        }
+
+        /* ===== HABILIDADES ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: var(--color-white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-small);
+            font-weight: 500;
+        }
+
+        /* ===== PROYECTOS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: var(--color-white);
+            padding: var(--spacing-lg);
+            margin: -var(--spacing-lg) -var(--spacing-lg) var(--spacing-lg) -var(--spacing-lg);
+        }
+
+        .project-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .project-description {
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tech-tag {
+            background: var(--color-gray);
+            color: var(--color-gray-dark);
+            padding: 4px var(--spacing-xs);
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-small);
+        }
+
+        .project-links {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        /* ===== EXPERIENCIA ===== */
+        .experience-timeline {
+            position: relative;
+            margin-top: var(--spacing-xl);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-xl);
+            padding-left: var(--spacing-xl);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            border: 3px solid var(--color-white);
+            box-shadow: 0 0 0 3px var(--color-accent);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: var(--color-gray);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content {
+            background: var(--color-white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-date {
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 4px var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-small);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-title {
+            color: var(--color-primary);
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .timeline-subtitle {
+            color: var(--color-secondary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ===== CONTACTO ===== */
+        .contact {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
+            color: var(--color-white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-xl);
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-xl);
+        }
+
+        .contact-links {
+            list-style: none;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-links li {
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .contact-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .contact-links a:hover {
+            opacity: 1;
+            color: var(--color-accent);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--color-dark);
+            color: var(--color-white);
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            opacity: 0.9;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .section {
+                padding: var(--spacing-xl) 0;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: var(--spacing-sm);
+                justify-content: center;
+            }
+            
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                padding-left: var(--spacing-lg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: var(--spacing-xl) 0;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* ===== SCROLL SMOOTH ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--color-primary);
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content fade-in-up">
+                <h1>Elvis Adames</h1>
+                <p class="subtitle">Estudiante en Ingeniería en Sistemas y Computación</p>
+                <p class="description">
+                    Especializandose en modelado, simulación, análisis y ciencia de datos con enfoque en aplicaciones de defensa. 
+                    Comprometido con la innovación tecnológica y la excelencia en el desarrollo de soluciones críticas.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                    <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HABILIDADES TÉCNICAS -->
+    <section id="habilidades" class="section">
+        <div class="container">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                <div class="card skill-category">
+                    <h3><i class="fas fa-code"></i> Lenguajes de Programación</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="card skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Análisis de datos</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">numpy</span>
+                        <span class="skill-tag">pandas</span>
+                        <span class="skill-tag">matplotlib</span>
+                        <span class="skill-tag">seaborn</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">RStudio</span>
+                    </div>
+                </div>
+                <div class="card skill-category">
+                    <h3><i class="fas fa-microchip"></i> Modelado y Simulacion</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">Simulink</span>
+                        <span class="skill-tag">LabVIEW</span>
+                        <span class="skill-tag">SFML</span>
+                        <span class="skill-tag">Gazebo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS DESTACADOS -->
+    <section id="proyectos" class="section">
+        <div class="container">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <div class="card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Python Data Dashboard</h3>
+                    </div>
+                    <p class="project-description">
+                        Desarrollo de un dashboard interactivo en Python para visualización y análisis de datos en tiempo real.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Jupyer Notebook</span>
+                        <span class="tech-tag">numpy</span>
+                        <span class="tech-tag">pandas</span>
+                    </div>
+                    <div class="project-links">
+                        <a target = "_blank" href="https://github.com/Layomx/Python-Data-Dashboard" class="btn btn-outline">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Simulador de Gravedad en 2D</h3>
+                    </div>
+                    <p class="project-description">
+                        Simulacion en 2D de interacciones gravitacionales entre múltiples cuerpos utilizando C++ y SFML.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">SFML</span>
+                    </div>
+                    <div class="project-links">
+                        <a target="_blank" href="https://github.com/Layomx/Gravity-Simulations" class="btn btn-outline">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIA ACADÉMICA Y PROFESIONAL -->
+    <section id="experiencia" class="section">
+        <div class="container">
+            <h2 class="section-title">Experiencia Académica</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2021 - 2026</span>
+                        <h3 class="timeline-title">Ingeniería en Sistemas y Computación</h3>
+                        <p class="timeline-subtitle">Universidad Tecnologica de Panama</p>
+                        <p>Especialización en sistemas de control, simulación y análisis de datos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <ul class="contact-links">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:drakeadamslink@gmail.com">drakeadamslink@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/elvisadames03/" target="_blank">LinkedIn</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/Layomx" target="_blank">GitHub</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+507 6503-9529</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Santiago, Veraguas, Panama</span>
+                        </li>
+                    </ul>
+                    <p>
+                        Disponible para colaboraciones en proyectos aplicables a defensa y analis.
+                        Interesado en oportunidades de investigación y desarrollo en sistemas críticos.
+                    </p>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    
